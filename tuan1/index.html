@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài tập tuần 1</title>
+    <style>
+        #app{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card{
+            padding: 20px;
+        }
+
+        .card > img{
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        
+    </div>
+    <script>
+        app = document.getElementById("app");
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
+
+        fetch("https://630efeb7498924524a83aa5a.mockapi.io/api/user", requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                data = JSON.parse(result)
+                for(var i=0; i<data.length; i++){
+                    html = `
+                    <div class="card">
+                        <img src="`+ data[i].avatar +`"/>
+                        <h4>`+ data[i].name +`</h4>
+                    </div>
+                    `
+                    app.innerHTML += html;
+                }
+            })
+            .catch(error => console.log('error', error));
+
+
+        
+    </script>
+</body>
+</html>
