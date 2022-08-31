@@ -31,19 +31,25 @@
             method: 'GET',
             redirect: 'follow'
         };
+        
 
         fetch("https://630efeb7498924524a83aa5a.mockapi.io/api/user", requestOptions)
             .then(response => response.text())
             .then(result => {
                 data = JSON.parse(result)
                 for(var i=0; i<data.length; i++){
-                    html = `
-                    <div class="card">
-                        <img src="`+ data[i].avatar +`"/>
-                        <h4>`+ data[i].name +`</h4>
-                    </div>
-                    `
-                    app.innerHTML += html;
+                    item = document.createElement("div")
+                    item.classList.add("card")
+
+                    img = document.createElement("img")
+                    img.setAttribute("src", data[i].avatar)
+
+                    h4 = document.createElement("h4")
+                    h4.innerHTML = data[i].name
+
+                    item.appendChild(img)
+                    item.appendChild(h4)
+                    app.appendChild(item);
                 }
             })
             .catch(error => console.log('error', error));
