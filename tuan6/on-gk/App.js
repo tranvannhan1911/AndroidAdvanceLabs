@@ -5,7 +5,11 @@ import Action from './components/action';
 import List from './components/list';
 
 export default function App() {
-  const [data, setData] = useState(["Học android nâng cao", "Học kiến trúc phần mềm"])
+  const [id, setId] = useState(1)
+  const [data, setData] = useState([{
+    id: 1,
+    title: "Học android nâng cao"
+  }])
 
   useEffect(() => {
     console.log(data)
@@ -19,8 +23,8 @@ export default function App() {
       justifyContent: 'center'
 
     }}>
-      <Action data={data} setData={setData}/>
-      <List data={data}/>
+      <Action data={data} setData={setData} id={id} setId={setId}/>
+      <List data={data} setData={setData}/>
     </View>
   );
 }

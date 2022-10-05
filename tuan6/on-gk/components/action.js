@@ -19,9 +19,11 @@ export default Action = (props) => {
             }}
             value={newValue}
             onChangeText={(value) => setNewValue(value)}/>
+            
             <Button title='Thêm' onPress={() => {
-                props.setData([...props.data, newValue])
+                props.setData([...props.data, {id: props.id+1, title: newValue}])
                 setNewValue("")
+                props.setId(props.id+1)
             }}/>
           </View>
     )
